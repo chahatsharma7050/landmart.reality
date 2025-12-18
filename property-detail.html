@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Detail | Landmart Reality</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:700;
+}
+
+/* MAIN */
+.container{padding:40px 50px}
+
+/* TOP */
+.top-section{
+display:grid;
+grid-template-columns:2.2fr 1fr;
+gap:30px;
+align-items:flex-start;
+}
+
+/* CARD */
+.card{
+background:#fff;
+border-radius:18px;
+padding:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+margin-bottom:25px;
+}
+
+/* GALLERY */
+.gallery img{
+width:100%;
+height:380px;
+object-fit:cover;
+border-radius:14px;
+}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{
+width:90px;height:60px;
+object-fit:cover;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* CONTACT */
+.contact{position:sticky;top:90px}
+.contact input,.contact button{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc
+}
+.contact button{
+background:var(--green);
+color:#fff;
+border:none;
+font-weight:600;
+cursor:pointer
+}
+
+/* PRICE */
+.price{font-size:28px;font-weight:800;color:var(--blue)}
+
+/* INFO GRID */
+.info-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;margin-top:20px
+}
+.info-box{
+background:#f5f7fa;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-size:13px
+}
+
+/* SIMILAR GRID */
+.similar{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px
+}
+
+iframe{width:100%;height:250px;border:none;border-radius:12px}
+
+.nearby-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.nearby-item{
+  background:#f5f7fa;
+  padding:15px;
+  border-radius:12px;
+  font-size:14px;
+}
+
+.nearby-item strong{
+  display:block;
+  margin-bottom:6px;
+  color:#1b3d6f;
+}
+
+
+@media(max-width:900px){
+.top-section{grid-template-columns:1fr}
+.contact{position:relative}
+.container{padding:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div style="display:flex;align-items:center;gap:12px">
+  <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff">
+    <img 
+      src="assets/logo-landmart-reality.png"
+      alt="Landmart Reality Logo"
+      style="height:42px"
+    >
+    <h1 style="margin:0">
+      Landmart <span style="color:#cfa84a">Reality</span>
+    </h1>
+  </a>
+</div>
+
+  <div> Landmart <span style="color:#cfa84a">Reality</span> </div>
+  <nav>
+    <a href="index.html" style="color:#fff;margin-right:20px;text-decoration:none">Home</a>
+    <a href="properties.html" style="color:#fff;text-decoration:none">Properties</a>
+  </nav>
+</header>
+
+<section class="container">
+
+<!-- IMAGE + CONTACT -->
+<div class="top-section">
+
+  <div class="card gallery">
+    <img id="mainImage">
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <div class="card contact">
+    <h3>Contact Owner</h3>
+    <input id="name" placeholder="Your Name">
+    <input id="phone" placeholder="Phone Number">
+    <button onclick="submitEnquiry()">Request Callback</button>
+    <button style="background:#1b3d6f" onclick="location.href='tel:8130589198'">Call Now</button>
+    <button style="background:#25D366" onclick="window.open('https://wa.me/8130589198')">WhatsApp</button>
+
+    <div style="margin-top:15px">
+      <h4>Schedule Visit</h4>
+      <input type="date">
+      <input type="time">
+      <button onclick="alert('Visit scheduled successfully')">Confirm Visit</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- DETAILS -->
+<div class="card">
+  <h2 id="title"></h2>
+  <p id="location"></p>
+  <div class="price" id="price"></div>
+  <div class="info-grid" id="info"></div>
+</div>
+
+<!-- PRICE TRENDS -->
+<div class="card">
+<h3>Property Price Trends</h3>
+
+<img src="price-trend-preview.png"
+style="width:100%;max-height:220px;object-fit:cover;border-radius:14px;margin:15px 0">
+
+<canvas id="pastPriceChart" height="90"></canvas><br>
+<canvas id="futurePriceChart" height="90"></canvas>
+
+<p style="font-size:13px;color:#555;margin-top:10px">
+*Future prices are indicative projections.
+</p>
+</div>
+
+<!-- MAP -->
+<div class="card">
+<h3>Location</h3>
+<iframe id="map"></iframe>
+</div>
+
+<!-- NEARBY ESSENTIAL PLACES -->
+<div class="card">
+  <h3>Nearby Essential Places</h3>
+
+  <div class="nearby-grid">
+    <div class="nearby-item">
+      🏫 <strong>Schools</strong>
+      <p>Delhi Public School – 1.2 km</p>
+      <p>Ryan International – 2.0 km</p>
+    </div>
+
+    <div class="nearby-item">
+      🏥 <strong>Hospitals</strong>
+      <p>Fortis Hospital – 2.5 km</p>
+      <p>Max Healthcare – 3.1 km</p>
+    </div>
+
+    <div class="nearby-item">
+      🛒 <strong>Supermarkets</strong>
+      <p>Reliance Smart – 0.8 km</p>
+      <p>DMart – 1.6 km</p>
+    </div>
+
+    <div class="nearby-item">
+      🚇 <strong>Metro / Transport</strong>
+      <p>Sector Metro Station – 1.4 km</p>
+      <p>Bus Stop – 300 m</p>
+    </div>
+
+    <div class="nearby-item">
+      🏦 <strong>Banks & ATMs</strong>
+      <p>HDFC Bank – 0.9 km</p>
+      <p>SBI ATM – 400 m</p>
+    </div>
+
+    <div class="nearby-item">
+      🌳 <strong>Parks & Leisure</strong>
+      <p>City Park – 1.1 km</p>
+      <p>Sports Complex – 2.3 km</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- EMI -->
+<div class="card">
+<h3>EMI Calculator</h3>
+<input id="loan" placeholder="Loan Amount">
+<input id="rate" placeholder="Interest Rate (%)">
+<input id="tenure" placeholder="Tenure (Years)">
+<button onclick="calcEMI()">Calculate EMI</button>
+<p id="emiResult"></p>
+</div>
+
+<!-- MORE PROPERTIES -->
+<div class="card">
+<h3>More Properties You May Like</h3>
+<div class="similar" id="moreProperties"></div>
+</div>
+
+</section>
+
+<script>
+const properties=[
+{id:1,title:"2 BHK Apartment",price:"₹65 L",loc:"Noida",bhk:2,area:"950 Sqft"},
+{id:2,title:"3 BHK Luxury Apartment",price:"₹1.2 Cr",loc:"Dwarka Delhi",bhk:3,area:"1400 Sqft"},
+{id:3,title:"Villa",price:"₹3.8 Cr",loc:"Gurgaon",bhk:4,area:"3200 Sqft"}
+];
+
+const id=parseInt(new URLSearchParams(location.search).get("id"))||1;
+const p=properties.find(x=>x.id===id);
+
+title.innerText=p.title;
+location.innerText=p.loc;
+price.innerText=p.price;
+mainImage.src=`https://picsum.photos/seed/${p.id}/1200/600`;
+map.src=`https://maps.google.com/maps?q=${p.loc}&output=embed`;
+
+info.innerHTML=`
+<div class="info-box">${p.bhk} BHK</div>
+<div class="info-box">${p.area}</div>
+<div class="info-box">Verified</div>`;
+
+for(let i=1;i<=5;i++){
+thumbs.innerHTML+=`<img src="https://picsum.photos/seed/${p.id+i}/300/200" onclick="mainImage.src=this.src">`;
+}
+
+function submitEnquiry(){alert("Enquiry submitted")}
+function calcEMI(){emiResult.innerText="EMI calculated"}
+
+// CHARTS
+new Chart(pastPriceChart,{
+type:"line",
+data:{labels:["2018","2019","2020","2021","2022","2023","2024"],
+datasets:[{data:[4800,5200,5400,6000,6700,7200,7600],borderColor:"#38a169",fill:true}]}
+});
+
+new Chart(futurePriceChart,{
+type:"line",
+data:{labels:["2025","2026","2027","2028","2029","2030"],
+datasets:[{data:[7900,8300,8800,9300,9800,10300],borderColor:"#cfa84a",borderDash:[6,6],fill:true}]}
+});
+
+// MORE PROPERTIES
+const more=[
+{id:4,t:"2 BHK Builder Floor",p:"₹82 L",l:"Janakpuri"},
+{id:5,t:"3 BHK Apartment",p:"₹1.6 Cr",l:"Noida 150"},
+{id:6,t:"Studio Apartment",p:"₹45 L",l:"Greater Noida"},
+{id:7,t:"Luxury Villa",p:"₹4.2 Cr",l:"Gurgaon"},
+{id:8,t:"Office Space",p:"₹2.1 Cr",l:"Cyber City"},
+{id:9,t:"High Rise Flat",p:"₹98 L",l:"Indirapuram"},
+{id:10,t:"Builder Floor",p:"₹1.35 Cr",l:"Rohini"},
+{id:11,t:"Penthouse",p:"₹3.9 Cr",l:"Noida Ext"}
+];
+
+more.forEach(x=>{
+moreProperties.innerHTML+=`
+<div class="card">
+<img src="https://picsum.photos/seed/${x.id}/600/400" style="width:100%;height:180px;object-fit:cover;border-radius:12px">
+<h4>${x.t}</h4>
+<p>${x.l}</p>
+<strong>${x.p}</strong><br>
+<button style="margin-top:10px;width:100%;padding:10px;border:none;border-radius:8px;background:#38a169;color:#fff"
+onclick="location.href='property-detail.html?id=${x.id}'">View Details</button>
+</div>`;
+});
+</script>
+
+</body>
+</html>

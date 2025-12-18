@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Builders | Partner with Landora Realty</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:18px 50px;
+font-size:24px;
+font-weight:800;
+}
+header span{color:var(--gold)}
+
+/* CONTAINER */
+.container{
+max-width:1100px;
+margin:auto;
+padding:50px 20px;
+}
+
+/* SECTION */
+.section{
+background:#fff;
+padding:35px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+margin-bottom:35px;
+}
+.section h2{
+color:var(--blue);
+margin-bottom:15px;
+}
+.section ul{
+margin-left:20px;
+}
+.section ul li{
+margin-bottom:10px;
+}
+
+/* HIGHLIGHT BOX */
+.highlight{
+background:#f1f5fb;
+border-left:6px solid var(--gold);
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+}
+
+/* BENEFITS */
+.benefits{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:20px;
+}
+.benefit{
+background:#f9fafc;
+padding:20px;
+border-radius:14px;
+text-align:center;
+font-weight:500;
+}
+
+/* FORM */
+form input, form textarea, form button{
+width:100%;
+padding:12px;
+margin-top:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+form button{
+background:var(--green);
+color:#fff;
+border:none;
+font-weight:700;
+cursor:pointer;
+}
+
+/* FOOTER NOTE */
+.footer-note{
+font-size:13px;
+color:#555;
+background:#fff;
+padding:25px;
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+line-height:1.7;
+}
+
+@media(max-width:768px){
+header{padding:15px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+Landmart <span>Reality</span> — For Builders
+</header>
+
+<div class="container">
+
+<!-- PARTNER WITH US -->
+<div class="section">
+<h2>Partner With Us</h2>
+<p>
+Landmart Reality works closely with reputed builders to market residential and commercial
+projects across NCR through a transparent and compliant partnership model.
+</p>
+
+<div class="highlight">
+<strong>Who can partner?</strong>
+<ul>
+<li>RERA registered builders & developers</li>
+<li>Residential & commercial project owners</li>
+<li>New launches and ready-to-move projects</li>
+</ul>
+</div>
+</div>
+
+<!-- LEAD & CP MODEL -->
+<div class="section">
+<h2>Lead & Channel Partner (CP) Model</h2>
+<ul>
+<li>Qualified buyer leads generated through digital & offline channels</li>
+<li>Dedicated channel partner support for site visits</li>
+<li>Structured CP payout model (project specific)</li>
+<li>No long-term lock-in contracts</li>
+</ul>
+</div>
+
+<!-- BENEFITS -->
+<div class="section">
+<h2>Benefits for Builders</h2>
+<div class="benefits">
+<div class="benefit">Verified Buyer Leads</div>
+<div class="benefit">Project-focused Marketing</div>
+<div class="benefit">On-ground Sales Support</div>
+<div class="benefit">Transparent Reporting</div>
+<div class="benefit">No Brand Dilution</div>
+<div class="benefit">Compliance-first Approach</div>
+</div>
+</div>
+
+<!-- CONTACT FORM -->
+<div class="section">
+<h2>Contact Us</h2>
+<p>Share your project details and our team will connect with you.</p>
+
+<form onsubmit="event.preventDefault(); alert('Thank you. Our team will contact you shortly.');">
+<input type="text" placeholder="Builder / Company Name" required>
+<input type="text" placeholder="Project Name" required>
+<input type="text" placeholder="Location / City" required>
+<input type="tel" placeholder="Contact Number" required>
+<input type="email" placeholder="Email ID">
+<textarea rows="4" placeholder="Brief about your project"></textarea>
+<button type="submit">Submit Details</button>
+</form>
+</div>
+
+<!-- LEGAL / RERA -->
+<div class="footer-note">
+<strong>Disclaimer:</strong><br><br>
+Landmart Reality is a RERA registered real estate agent.  
+Listings are marketed with owner or channel partner authorisation only.  
+All project information shared is subject to builder approvals and statutory compliance.  
+Customers are advised to verify all project details independently before booking.
+</div>
+
+</div>
+
+</body>
+</html>

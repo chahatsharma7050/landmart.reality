@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent Property | Trading Shastra Property</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:16px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+position:sticky;
+top:0;
+z-index:99;
+}
+header h1 span{color:var(--gold)}
+nav{display:flex;gap:15px;align-items:center}
+nav a{
+color:#fff;
+font-weight:500;
+text-decoration:none;
+}
+.loan-btn{
+background:var(--green);
+color:#fff;
+border:none;
+padding:8px 16px;
+border-radius:20px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+background:linear-gradient(rgba(27,61,111,.85),rgba(27,61,111,.65)),
+url("https://picsum.photos/seed/renthero/1600/900");
+background-size:cover;
+background-position:center;
+height:70vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+}
+.hero h2{font-size:42px;font-weight:800}
+.hero p{margin:15px 0 25px;font-size:18px}
+
+/* SEARCH */
+.search-box{
+background:#fff;
+padding:25px;
+border-radius:18px;
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+justify-content:center;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.search-box input,.search-box select{
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+min-width:200px;
+}
+.search-box button{
+background:var(--green);
+color:#fff;
+border:none;
+padding:12px 30px;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* SECTION */
+.section{padding:70px 60px}
+.section h3{
+text-align:center;
+font-size:32px;
+color:var(--blue);
+margin-bottom:45px;
+}
+.section h3::after{
+content:"";
+width:60px;
+height:4px;
+background:var(--gold);
+display:block;
+margin:10px auto;
+}
+
+/* RENT OPTIONS */
+.options{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+}
+.option{
+background:#fff;
+padding:35px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+.option i{
+font-size:40px;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+/* PROPERTY GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+.card{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+.card-body{padding:18px}
+.price{
+font-size:22px;
+font-weight:800;
+color:var(--blue);
+}
+.tag{
+display:inline-block;
+background:#e8f6ee;
+color:var(--green);
+padding:4px 10px;
+border-radius:12px;
+font-size:12px;
+margin:8px 0;
+}
+.card button{
+margin-top:12px;
+width:100%;
+padding:10px;
+border:none;
+border-radius:10px;
+background:var(--green);
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
+/* WHY RENT */
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+.feature{
+background:#fff;
+padding:30px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 12px 25px rgba(0,0,0,.12);
+}
+
+/* FOOTER */
+footer{
+background:#111;
+color:#fff;
+padding:35px;
+text-align:center;
+}
+
+@media(max-width:768px){
+.hero h2{font-size:30px}
+.section{padding:50px 20px}
+header{padding:15px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Landmart <span>Reality</span> </h1>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="buy.html">Buy</a>
+  <a href="rent.html">Rent</a>
+  <a href="properties.html">Properties</a>
+  <button class="loan-btn" onclick="postRent()">Post Rental</button>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div>
+<h2>Find Rental Homes That Fit Your Life</h2>
+<p>Flats • Builder Floors • Villas • Commercial</p>
+<div class="search-box">
+<input placeholder="City / Locality">
+<select>
+  <option>Any BHK</option>
+  <option>1 BHK</option>
+  <option>2 BHK</option>
+  <option>3 BHK</option>
+  <option>4+ BHK</option>
+</select>
+<select>
+  <option>Budget</option>
+  <option>Below ₹20k</option>
+  <option>₹20k – ₹40k</option>
+  <option>₹40k+</option>
+</select>
+<button onclick="window.location.href='properties.html'">Search Rentals</button>
+</div>
+</div>
+</section>
+
+<!-- RENT TYPES -->
+<section class="section">
+<h3>Rent Options</h3>
+<div class="options">
+<div class="option"><i class="fa-solid fa-building"></i><h4>Apartments</h4></div>
+<div class="option"><i class="fa-solid fa-house"></i><h4>Builder Floors</h4></div>
+<div class="option"><i class="fa-solid fa-city"></i><h4>Villas</h4></div>
+<div class="option"><i class="fa-solid fa-store"></i><h4>Commercial</h4></div>
+</div>
+</section>
+
+<!-- FEATURED RENTALS -->
+<section class="section">
+<h3>Featured Rental Properties</h3>
+<div class="grid">
+
+<div class="card">
+<img src="https://picsum.photos/seed/r1/800/500">
+<div class="card-body">
+<h4>2 BHK Apartment</h4>
+<div class="price">₹25,000 / month</div>
+<span class="tag">No Brokerage</span>
+<p>Noida Sector 62</p>
+<button onclick="viewDetails(1)">View Details</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/r2/800/500">
+<div class="card-body">
+<h4>3 BHK Builder Floor</h4>
+<div class="price">₹38,000 / month</div>
+<span class="tag">Family Preferred</span>
+<p>Dwarka, Delhi</p>
+<button onclick="viewDetails(2)">View Details</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/r3/800/500">
+<div class="card-body">
+<h4>1 BHK Studio</h4>
+<div class="price">₹18,000 / month</div>
+<span class="tag">Ready to Move</span>
+<p>Indirapuram</p>
+<button onclick="viewDetails(3)">View Details</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- WHY RENT -->
+<section class="section">
+<h3>Why Rent With Us</h3>
+<div class="features">
+<div class="feature">✔ Verified Owners</div>
+<div class="feature">✔ Zero Brokerage Rentals</div>
+<div class="feature">✔ Instant Property Visits</div>
+<div class="feature">✔ Rental Agreement Support</div>
+</div>
+</section>
+
+<footer>
+© 2025 Landmart Reality • Rent Smarter, Live Better
+</footer>
+
+<script>
+function viewDetails(id){
+  window.location.href="property-detail.html?id="+id;
+}
+function postRent(){
+  window.open(
+    "https://wa.me/8130589198?text=Hi%20I%20want%20to%20post%20my%20property%20for%20rent",
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>

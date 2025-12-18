@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Shastra Property | Buy • Rent • Home Loan</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- ANALYTICS PLACEHOLDER -->
+<!-- Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script> -->
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:16px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+position:sticky;
+top:0;
+z-index:99;
+}
+header h1 span{color:var(--gold)}
+nav{display:flex;gap:15px;align-items:center}
+nav a{
+color:#fff;
+font-weight:500;
+cursor:pointer;
+text-decoration:none;
+}
+.loan-btn{
+background:var(--green);
+color:#fff;
+border:none;
+padding:8px 16px;
+border-radius:20px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+background:linear-gradient(rgba(27,61,111,.85),rgba(27,61,111,.65)),
+url("https://picsum.photos/seed/hero/1600/900");
+background-size:cover;
+background-position:center;
+height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+}
+.hero h2{font-size:44px;font-weight:800}
+.hero p{margin:15px 0 25px;font-size:18px}
+
+/* SEARCH */
+.search-box{
+background:#fff;
+padding:30px;
+border-radius:18px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.search-box input,.search-box select{
+padding:12px;border-radius:10px;border:1px solid #ccc;min-width:220px
+}
+.search-box button{
+background:var(--green);
+color:#fff;border:none;padding:12px 30px;border-radius:10px;font-weight:600
+}
+
+/* SECTION */
+.section{padding:80px 60px}
+.section h3{
+text-align:center;font-size:32px;color:var(--blue);margin-bottom:50px
+}
+.section h3::after{
+content:"";width:60px;height:4px;background:var(--gold);display:block;margin:10px auto
+}
+
+/* OPTIONS */
+.options{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px
+}
+.option-box{
+background:#fff;padding:40px;border-radius:18px;text-align:center;
+box-shadow:0 15px 30px rgba(0,0,0,.15)
+}
+.option-box i{font-size:40px;color:var(--gold);margin-bottom:15px}
+
+/* FEATURED PROJECTS */
+.grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px
+}
+.card{
+background:#fff;border-radius:16px;overflow:hidden;
+box-shadow:0 15px 30px rgba(0,0,0,.15)
+}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-body{padding:20px}
+
+/* WHY */
+.features{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px
+}
+.feature{
+background:#fff;padding:30px;border-radius:18px;text-align:center;
+box-shadow:0 12px 25px rgba(0,0,0,.12)
+}
+
+/* CITIES */
+.cities{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px
+}
+.city{position:relative;border-radius:16px;overflow:hidden}
+.city img{width:100%;height:200px;object-fit:cover}
+.city span{
+position:absolute;bottom:15px;left:15px;color:#fff;font-size:20px;font-weight:700
+}
+
+/* TESTIMONIALS */
+.testimonials{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px
+}
+.review{
+background:#fff;padding:30px;border-radius:18px;
+box-shadow:0 12px 25px rgba(0,0,0,.12)
+}
+
+/* POST */
+.post-box{
+background:#fff;padding:40px;border-radius:18px;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+max-width:700px;margin:auto;text-align:center
+}
+
+/* FOOTER */
+footer{background:#111;color:#fff;padding:40px;text-align:center}
+
+/* EMI MODAL */
+#emiModal{
+display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);
+z-index:999;align-items:center;justify-content:center
+}
+#emiModal .box{
+background:#fff;padding:30px;border-radius:18px;
+width:90%;max-width:420px;position:relative
+}
+#emiModal input{
+width:100%;padding:10px;margin-bottom:10px;
+border-radius:8px;border:1px solid #ccc
+}
+.close{
+position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;border:none;background:none
+}
+
+@media(max-width:768px){
+.hero h2{font-size:30px}
+.section{padding:50px 20px}
+header{padding:15px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div style="display:flex;align-items:center;gap:10px">
+  <img 
+    src="assets/logo.png"
+    alt="Landmart Reality Logo"
+    style="height:52px"
+  >
+
+<h1>Landmart <span>Reality</span></h1>
+</div>
+
+<nav>
+  <a href="properties.html">Properties</a>
+<a href="buy.html">Buy</a>
+<a href="rent.html">Rent</a>
+<a href="commercial.html">Commercial</a>
+<a onclick="openEmi()">EMI Calculator</a>
+<button class="loan-btn" onclick="getHomeLoan()">Get Home Loan</button>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div>
+<h2>Search Properties to Buy or Rent</h2>
+<p>Homes • Apartments • New Projects</p>
+<div class="search-box">
+  <input placeholder="City / Locality / Project">
+
+  <select>
+    <option>Buy</option>
+    <option>Rent</option>
+    <option>commercial</option>
+  </select>
+
+  <!-- ✅ NEW BUDGET OPTION (ADDED) -->
+  <select>
+    <option value="">Budget</option>
+    <option value="20">Up to ₹20 L</option>
+    <option value="50">Up to ₹50 L</option>
+    <option value="75">Up to ₹75 L</option>
+    <option value="100">Up to ₹1 Cr</option>
+    <option value="200">Up to ₹2 Cr</option>
+    <option value="500">Above ₹2 Cr</option>
+  </select>
+
+  <select>
+    <option>Apartment</option>
+    <option>Villa</option>
+    <option>1bhk</option>
+  </select>
+
+  <button onclick="openPurposePopup()">Search</button>
+</div>
+
+</div>
+</section>
+
+<!-- BUY RENT COMMERCIAL -->
+<section class="section" id="buy">
+<h3>What Are You Looking For?</h3>
+</div>
+</section>
+<div class="options">
+
+ <!-- BUY -->
+  <a href="buy.html" style="text-decoration:none;color:inherit">
+    <div class="option-box">
+      <i class="fa-solid fa-house"></i>
+      <h4>Buy Property</h4>
+    </div>
+  </a>
+
+  <!-- RENT -->
+  <a href="rent.html" style="text-decoration:none;color:inherit">
+    <div class="option-box">
+      <i class="fa-solid fa-key"></i>
+      <h4>Rent Property</h4>
+    </div>
+  </a>
+
+  <!-- COMMERCIAL (future ready) -->
+  <a href="commercial.html" style="text-decoration:none;color:inherit">
+    <div class="option-box">
+      <i class="fa-solid fa-building"></i>
+      <h4>Commercial</h4>
+    </div>
+  </a>
+
+</div>
+
+<!-- FEATURED -->
+<section class="section">
+<h3>Featured Projects</h3>
+<div class="grid">
+<div class="card"><img loading="lazy" src="https://picsum.photos/seed/p1/800/500"><div class="card-body"><h4>Luxury Towers</h4><p>Noida</p></div></div>
+<div class="card"><img loading="lazy" src="https://picsum.photos/seed/p2/800/500"><div class="card-body"><h4>Premium Villas</h4><p>Gurgaon</p></div></div>
+<div class="card"><img loading="lazy" src="https://picsum.photos/seed/p3/800/500"><div class="card-body"><h4>Commercial Hub</h4><p>Delhi NCR</p></div></div>
+</div>
+</section>
+
+<!-- WHY -->
+<section class="section">
+<h3>Why Choose Us</h3>
+<div class="features">
+<div class="feature">✔ 100% Verified Properties</div>
+<div class="feature">✔ Zero Brokerage</div>
+<div class="feature">✔ Direct Owner Deals</div>
+<div class="feature">✔ Home Loan Support</div>
+</div>
+</section>
+
+<!-- FOR BUILDERS SECTION -->
+<section class="section" id="builders">
+  <h3>For Builders</h3>
+
+  <div class="features">
+    <div class="feature">
+      <strong>Partner With Us</strong>
+      <p style="margin-top:10px">
+        Collaborate with Landora Realty to market your residential
+        and commercial projects with verified buyer outreach.
+      </p>
+    </div>
+
+    <div class="feature">
+      <strong>Lead & CP Model</strong>
+      <p style="margin-top:10px">
+        Structured channel partner model with qualified leads,
+        site visit coordination, and transparent reporting.
+      </p>
+    </div>
+
+    <div class="feature">
+      <strong>Benefits Explained</strong>
+      <p style="margin-top:10px">
+        ✔ Verified buyers<br>
+        ✔ No long-term lock-in<br>
+        ✔ Compliance-first approach
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:35px">
+    <a href="builders.html">
+      <button class="loan-btn">
+        Partner With Us
+      </button>
+    </a>
+  </div>
+</section>
+
+
+<!-- CITIES -->
+<section class="section">
+<h3>Cities We Serve</h3>
+<div class="cities">
+<div class="city"><img loading="lazy" src="https://picsum.photos/seed/c1/600/400"><span>Delhi</span></div>
+<div class="city"><img loading="lazy" src="https://picsum.photos/seed/c2/600/400"><span>Noida</span></div>
+<div class="city"><img loading="lazy" src="https://picsum.photos/seed/c3/600/400"><span>Gurgaon</span></div>
+<div class="city"><img loading="lazy" src="https://picsum.photos/seed/c4/600/400"><span>Greater Noida</span></div>
+</div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+<h3>What Our Customers Say</h3>
+<div class="testimonials">
+<div class="review"><strong>Rahul Mehta</strong><p>Very transparent experience.</p></div>
+<div class="review"><strong>Anjali Verma</strong><p>No brokerage saved a lot.</p></div>
+<div class="review"><strong>Neeraj Singh</strong><p>Best NCR property platform.</p></div>
+</div>
+</section>
+
+<!-- POST -->
+<section class="section">
+<h3>Post Free Property Ad</h3>
+<div class="post-box">
+<p><strong>Owners Only</strong></p>
+<p>✔ OTP Verified Listing<br>✔ 1 Free Ad<br>✔ Paid Boost Optional</p><br>
+<button class="loan-btn">Post Property Free</button>
+</div>
+</section>
+
+
+<footer>
+
+<a href="legalpage.html">Legal</a>
+
+© 2025 Landmart Reality. All Rights Reserved.
+
+</footer>
+
+
+<!-- EMI MODAL -->
+<div id="emiModal">
+<div class="box">
+<button class="close" onclick="closeEmi()">×</button>
+<h3 style="color:var(--blue)">Home Loan EMI Calculator</h3>
+<input id="loanAmt" placeholder="Loan Amount (₹)">
+<input id="rate" placeholder="Interest Rate (%)">
+<input id="tenure" placeholder="Tenure (Years)">
+<button class="loan-btn" onclick="calcEmi()">Calculate EMI</button>
+<p id="emiResult" style="margin-top:15px;font-weight:700;color:var(--blue)"></p>
+</div>
+</div>
+
+<script>
+function openEmi(){emiModal.style.display="flex"}
+function closeEmi(){emiModal.style.display="none"}
+function calcEmi(){
+let P=loanAmt.value,R=rate.value/12/100,N=tenure.value*12;
+if(!P||!R||!N){alert("Fill all fields");return;}
+let EMI=(P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+emiResult.innerText="Estimated EMI: ₹"+EMI.toFixed(0)+"/month";
+}
+
+</script>
+
+<script>
+
+
+  if(choice){
+    // Google Form (PRIMARY)
+    window.open(
+      "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform",
+      "_blank"
+    );
+  } else {
+    // WhatsApp (BACKUP)
+    window.open(
+      "https://wa.me/8130589198?text=Hi%20I%20want%20a%20home%20loan%20assistance",
+      "_blank"
+    );
+  }
+
+</script>
+
+<script>
+function getHomeLoan(){
+  const choice = confirm(
+    "Click OK to fill the Home Loan Form\n\nClick Cancel to chat on WhatsApp"
+  );
+
+  if(choice){
+    // Google Form (PRIMARY)
+    window.open(
+      "https://docs.google.com/forms/d/1pgn60hedMMv29DKy5_OR85NDits-U9q0KqJPzM33eC0/edit",
+      "_blank"
+    );
+  } else {
+    // WhatsApp (BACKUP)
+    window.open(
+      "https://wa.me/8130589198?text=Hi%20I%20want%20a%20home%20loan%20assistance",
+      "_blank"
+    );
+  }
+}
+</script>
+
+<script>
+function goToSearch(){
+  const location = document.querySelector('.search-box input').value;
+  const purpose = document.querySelectorAll('.search-box select')[0].value.toLowerCase(); // buy/rent
+  const type = document.querySelectorAll('.search-box select')[1].value.toLowerCase(); // apartment/villa
+
+  let url = `properties.html?type=${purpose}`;
+
+  if(location) url += `&location=${encodeURIComponent(location)}`;
+  if(type) url += `&category=${encodeURIComponent(type)}`;
+
+  window.location.href = url;
+}
+</script>
+
+<script>
+let selectedPurpose = "";
+
+function openPurposePopup(){
+  document.getElementById("purposePopup").style.display = "flex";
+}
+
+function continueSearch(){
+  const p = document.querySelector('input[name="purpose"]:checked');
+  if(!p){
+    alert("Please select one option");
+    return;
+  }
+
+  selectedPurpose = p.value;
+
+  // Example: read Buy/Rent dropdown
+  const intent = document.querySelector('.search-box select').value.toLowerCase();
+
+  // Redirect logic
+  if(intent === "buy"){
+    location.href = `buy.html?purpose=${selectedPurpose}`;
+  }else{
+    location.href = `rent.html?purpose=${selectedPurpose}`;
+  }
+}
+</script>
+
+
+<!-- PURPOSE POPUP -->
+<div id="purposePopup" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+">
+  <div style="
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    width:90%;
+    max-width:420px;
+  ">
+    <h3 style="color:#1b3d6f;margin-bottom:15px">
+      This property is for?
+    </h3>
+
+    <label><input type="radio" name="purpose" value="self"> Self Living</label><br><br>
+    <label><input type="radio" name="purpose" value="invest_rent"> Investment + Rent</label><br><br>
+    <label><input type="radio" name="purpose" value="rent_only"> Only Rental Income</label>
+
+    <br><br>
+    <button onclick="continueSearch()" style="
+      width:100%;
+      padding:12px;
+      background:#38a169;
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      font-weight:600;
+    ">
+      Continue
+    </button>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

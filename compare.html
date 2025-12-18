@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Properties | Landmart Reality</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--blue:#1b3d6f;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+header{
+background:var(--blue);
+color:#fff;
+padding:18px 50px;
+font-size:22px;
+font-weight:800;
+}
+
+.bhk-filter{
+display:flex;
+gap:10px;
+padding:20px 50px;
+}
+.bhk-filter button{
+padding:8px 18px;
+border-radius:20px;
+border:1px solid #ddd;
+background:#fff;
+cursor:pointer;
+font-weight:600;
+}
+.bhk-filter button.active{
+background:var(--blue);
+color:#fff;
+border-color:var(--blue);
+}
+
+.compare-wrap{padding:20px 50px 40px}
+
+.compare-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 12px 30px rgba(0,0,0,.15);
+position:relative;
+}
+.card img{
+width:100%;
+height:190px;
+object-fit:cover;
+}
+.card-body{padding:16px}
+.card-body h3{font-size:17px;font-weight:700}
+.price{font-size:22px;font-weight:800;color:var(--blue)}
+.badges{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.badge{font-size:12px;padding:4px 10px;border-radius:12px;background:#f1f3f6}
+.best{background:#e8f6ee;border:1px solid var(--green);color:var(--green);font-weight:600}
+.card button{
+margin-top:10px;
+width:100%;
+padding:10px;
+border:none;
+border-radius:10px;
+background:var(--green);
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
+.remove{
+position:absolute;
+top:10px;
+right:10px;
+width:32px;
+height:32px;
+border:none;
+border-radius:50%;
+background:#fff;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.compare-table{
+margin-top:40px;
+background:#fff;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+padding:25px;
+}
+.row{
+display:grid;
+grid-template-columns:180px repeat(auto-fit,minmax(200px,1fr));
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+.row:last-child{border-bottom:none}
+.label{font-weight:700;color:#555}
+.value{text-align:center}
+</style>
+</head>
+
+<body>
+
+<header style="display:flex;justify-content:space-between;align-items:center">
+  <div>Landmart Reality — Compare</div>
+
+  <nav style="font-size:16px">
+    <a href="index.html"
+       style="color:#fff;text-decoration:none;margin-right:20px">
+      Home
+    </a>
+
+    <a href="properties.html"
+       style="color:#fff;text-decoration:none">
+      Properties
+    </a>
+  </nav>
+</header>
+
+
+<div class="bhk-filter">
+<button class="active" onclick="filterBHK('all',this)">All</button>
+<button onclick="filterBHK(2,this)">2 BHK</button>
+<button onclick="filterBHK(3,this)">3 BHK</button>
+<button onclick="filterBHK(4,this)">4 BHK</button>
+</div>
+
+<section class="compare-wrap">
+
+<div class="compare-grid" id="compareCards"></div>
+<div class="compare-table" id="compareTable"></div>
+
+<h2 style="margin-top:50px">Recommended Properties in Same Area</h2>
+<div class="compare-grid" id="recommendedGrid"></div>
+
+<h2 style="margin-top:50px">
+Recommended Properties in Similar Price Range (Other Areas)
+</h2>
+<div class="compare-grid" id="priceRangeGrid"></div>
+
+</section>
+
+<script>
+const properties=[
+{id:1,title:"2 BHK Apartment",price:6500000,area:950,bhk:2,location:"Noida"},
+{id:2,title:"3 BHK Luxury Apartment",price:12000000,area:1400,bhk:3,location:"Dwarka, Delhi"},
+{id:3,title:"4 BHK Villa",price:38000000,area:3200,bhk:4,location:"Gurgaon"},
+{id:4,title:"3 BHK Builder Floor",price:9200000,area:1350,bhk:3,location:"Rohini, Delhi"},
+{id:5,title:"3 BHK New Project",price:9500000,area:1250,bhk:3,location:"Greater Noida"},
+{id:6,title:"2 BHK Apartment",price:5200000,area:850,bhk:2,location:"Ghaziabad"},
+{id:7,title:"4 BHK Villa",price:29000000,area:2800,bhk:4,location:"Faridabad"},
+{id:8,title:"3 BHK Apartment",price:16000000,area:1650,bhk:3,location:"Noida Sector 150"},
+{id:9,title:"2 BHK Apartment",price:7200000,area:980,bhk:2,location:"Indirapuram"},
+{id:10,title:"4 BHK Premium Villa",price:41000000,area:3500,bhk:4,location:"Golf Course Road"}
+];
+
+let activeBHK="all";
+const params=new URLSearchParams(location.search);
+const ids=(params.get("ids")||"1,2,3").split(",").map(Number);
+const selected=properties.filter(p=>ids.includes(p.id));
+
+function cardHTML(p){
+return `
+<div class="card">
+<img src="https://picsum.photos/seed/${p.id}/800/500">
+<div class="card-body">
+<h3>${p.title}</h3>
+<div class="price">₹${(p.price/100000).toFixed(1)} L</div>
+<div class="badges"><span class="badge">${p.bhk} BHK</span></div>
+<p>${p.location}</p>
+<button onclick="viewDetails(${p.id})">View Details</button>
+</div>
+</div>`;
+}
+
+function render(){
+const list=activeBHK==="all"?selected:selected.filter(p=>p.bhk===activeBHK);
+const minPrice=Math.min(...list.map(p=>p.price));
+const maxArea=Math.max(...list.map(p=>p.area));
+
+document.getElementById("compareCards").innerHTML=list.map(p=>`
+<div class="card">
+<button class="remove" onclick="removeProp(${p.id})">×</button>
+<img src="https://picsum.photos/seed/main${p.id}/800/500">
+<div class="card-body">
+<h3>${p.title}</h3>
+<div class="price">₹${(p.price/100000).toFixed(1)} L</div>
+<div class="badges">
+<span class="badge ${p.price===minPrice?'best':''}">Best Price</span>
+<span class="badge ${p.area===maxArea?'best':''}">Largest Area</span>
+<span class="badge">${p.bhk} BHK</span>
+</div>
+<p>${p.location}</p>
+<button onclick="viewDetails(${p.id})">View Details</button>
+</div>
+</div>`).join("");
+
+document.getElementById("compareTable").innerHTML=
+["Price","BHK","Area","Location"].map((r,i)=>`
+<div class="row">
+<div class="label">${r}</div>
+${list.map(p=>`<div class="value">${
+i===0?"₹"+(p.price/100000).toFixed(1)+" L":
+i===1?p.bhk:
+i===2?p.area+" Sqft":
+p.location}</div>`).join("")}
+</div>`).join("");
+
+renderSameArea();
+renderPriceRange();
+}
+
+function renderSameArea(){
+const areas=selected.map(p=>p.location.split(",")[0].toLowerCase());
+document.getElementById("recommendedGrid").innerHTML=
+properties.filter(p=>!ids.includes(p.id)&&areas.some(a=>p.location.toLowerCase().includes(a)))
+.slice(0,6).map(cardHTML).join("");
+}
+
+function renderPriceRange(){
+const avg=selected.reduce((s,p)=>s+p.price,0)/selected.length;
+let min=avg*0.5, max=avg*1.8;
+
+let matches=properties.filter(p=>
+!ids.includes(p.id)&&p.price>=min&&p.price<=max
+);
+
+// fallback
+if(matches.length===0){
+matches=properties.filter(p=>!ids.includes(p.id));
+}
+
+document.getElementById("priceRangeGrid").innerHTML=
+matches.slice(0,6).map(cardHTML).join("");
+}
+
+function filterBHK(b,e){
+activeBHK=b;
+document.querySelectorAll('.bhk-filter button').forEach(x=>x.classList.remove('active'));
+e.classList.add('active');
+render();
+}
+
+function viewDetails(id){location.href="property-detail.html?id="+id;}
+function removeProp(id){
+const r=selected.filter(p=>p.id!==id).map(p=>p.id);
+if(r.length<2)return alert("Select at least 2 properties");
+location.href="compare.html?ids="+r.join(",");
+}
+
+render();
+</script>
+
+</body>
+</html>

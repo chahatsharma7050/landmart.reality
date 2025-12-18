@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Properties | Trading Shastra Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+header h1 span{color:var(--gold)}
+nav a{color:#fff;margin-left:20px;font-weight:500}
+
+/* TITLE */
+.page-title{
+background:linear-gradient(135deg,#1b3d6f,#16325a);
+color:#fff;
+padding:40px;
+text-align:center;
+}
+.page-title h2{font-size:34px;font-weight:800}
+
+/* TABS */
+.tabs{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:-18px;
+}
+.tab{
+background:#fff;
+padding:12px 30px;
+border-radius:30px;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+.tab.active{background:var(--gold)}
+
+/* CATEGORY BAR */
+.category-bar{
+display:flex;
+gap:10px;
+padding:15px 50px;
+background:#fff;
+border-bottom:1px solid #eee;
+overflow-x:auto;
+}
+.category-bar::-webkit-scrollbar{display:none}
+.chip{
+padding:8px 16px;
+border-radius:20px;
+border:1px solid #ddd;
+cursor:pointer;
+background:#fff;
+white-space:nowrap;
+}
+.chip.active{background:var(--blue);color:#fff}
+.chip.ghost{background:#f1f3f6}
+
+/* MAIN */
+.container{
+display:grid;
+grid-template-columns:260px 1fr;
+gap:30px;
+padding:40px 50px;
+}
+
+/* FILTERS */
+.filters{
+background:#fff;
+padding:20px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+position:sticky;
+top:20px;
+}
+.filters label{font-size:13px;margin-top:12px;display:block}
+.filters input, .filters select{
+width:100%;
+padding:8px;
+margin-top:5px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+/* RESULT COUNT */
+#resultCount{font-weight:600;margin-bottom:10px;color:#555}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+/* CARD */
+.card{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 14px 28px rgba(0,0,0,.15);
+}
+.card img{width:100%;height:210px;object-fit:cover}
+.card-body{padding:16px}
+
+.badge{font-size:12px;padding:4px 8px;border-radius:6px;color:#fff}
+.buy{background:var(--green)}
+.rent{background:var(--blue)}
+.new{background:var(--gold);color:#000}
+.verify{color:var(--green);font-size:12px}
+
+.price{font-size:20px;font-weight:800;color:var(--blue)}
+.brokerage{font-size:12px;color:var(--green)}
+.score{font-size:12px;margin-top:6px}
+
+footer{
+background:#111;
+color:#fff;
+padding:30px;
+text-align:center;
+margin-top:40px;
+}
+
+@media(max-width:900px){
+.container{grid-template-columns:1fr}
+header{flex-direction:column}
+}
+</style>
+</head>
+
+<!-- COMPARE BAR -->
+<div id="compareBar"
+style="
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#1b3d6f;
+color:#fff;
+padding:12px 20px;
+border-radius:30px;
+display:none;
+align-items:center;
+gap:15px;
+z-index:999;
+box-shadow:0 10px 25px rgba(0,0,0,.25)
+">
+  <span id="compareCount">0 Selected</span>
+  <button
+    style="
+    background:#38a169;
+    border:none;
+    padding:8px 16px;
+    border-radius:20px;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer"
+    onclick="goToCompare()">
+    Compare Now
+  </button>
+</div>
+
+
+<body>
+
+<header>
+<h1>Landmart <span>Reality</span> </h1>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="buy.html">Buy</a>
+  <a href="rent.html">Rent</a>
+  <a href="properties.html">New Projects</a>
+</nav>
+
+</header>
+
+<section class="page-title">
+<h2>Explore Properties</h2>
+<p>Buy • Rent • New Projects</p>
+</section>
+
+<div class="tabs">
+<div class="tab active" onclick="filterType('buy',this)">Buy</div>
+<div class="tab" onclick="filterType('rent',this)">Rent</div>
+<div class="tab" onclick="filterType('new',this)">New Projects</div>
+</div>
+
+<div class="category-bar">
+<button class="chip active" onclick="filterCategory('all',this)">All</button>
+<button class="chip" onclick="filterCategory('apartment',this)">Apartment</button>
+<button class="chip" onclick="filterCategory('builder-floor',this)">Builder Floor</button>
+<button class="chip" onclick="filterCategory('villa',this)">Villa</button>
+<button class="chip" onclick="filterCategory('commercial',this)">Commercial</button>
+</div>
+
+<section class="container">
+
+<aside class="filters">
+<label>Location</label>
+<input id="locationFilter" placeholder="City / Area" onkeyup="applyFilters()">
+
+<label>BHK</label>
+<select id="bhkFilter" onchange="applyFilters()">
+<option value="">Any</option>
+<option value="1">1 BHK</option>
+<option value="2">2 BHK</option>
+<option value="3">3 BHK</option>
+<option value="4">4+ BHK</option>
+</select>
+
+<label>Budget (Max)</label>
+<input type="range" id="budgetRange" min="2000000" max="50000000" step="500000"
+oninput="updateBudgetLabel();applyFilters()">
+<div id="budgetLabel">Up to ₹5 Cr</div>
+
+<label>
+<input type="checkbox" id="verifiedFilter" onchange="applyFilters()"> Verified only
+</label>
+</aside>
+
+<div>
+<div id="resultCount"></div>
+
+<div class="grid">
+
+<!-- 20 PROPERTIES -->
+<script>
+const propertiesData = [
+{t:'buy',c:'apartment',b:2,p:6500000,v:'yes',l:'noida'},
+{t:'buy',c:'apartment',b:3,p:12000000,v:'yes',l:'dwarka delhi'},
+{t:'buy',c:'villa',b:4,p:38000000,v:'yes',l:'gurgaon'},
+{t:'buy',c:'builder-floor',b:3,p:9500000,v:'no',l:'rohini delhi'},
+{t:'buy',c:'commercial',b:0,p:42000000,v:'yes',l:'noida sector 62'},
+{t:'rent',c:'apartment',b:2,p:3000000,v:'yes',l:'noida'},
+{t:'rent',c:'builder-floor',b:3,p:4200000,v:'yes',l:'janakpuri delhi'},
+{t:'rent',c:'villa',b:4,p:8500000,v:'no',l:'gurgaon'},
+{t:'rent',c:'commercial',b:0,p:12000000,v:'yes',l:'connaught place delhi'},
+{t:'rent',c:'apartment',b:1,p:2200000,v:'yes',l:'greater noida'},
+{t:'new',c:'apartment',b:2,p:7800000,v:'yes',l:'greater noida'},
+{t:'new',c:'apartment',b:3,p:11000000,v:'yes',l:'noida extension'},
+{t:'new',c:'villa',b:4,p:29000000,v:'yes',l:'yamuna expressway'},
+{t:'new',c:'commercial',b:0,p:18000000,v:'yes',l:'noida sector 142'},
+{t:'new',c:'builder-floor',b:3,p:9900000,v:'no',l:'saket delhi'},
+{t:'buy',c:'apartment',b:1,p:5200000,v:'yes',l:'ghaziabad'},
+{t:'buy',c:'villa',b:3,p:21000000,v:'yes',l:'faridabad'},
+{t:'rent',c:'apartment',b:3,p:4800000,v:'yes',l:'indirapuram'},
+{t:'rent',c:'builder-floor',b:2,p:3600000,v:'no',l:'dwarka delhi'},
+{t:'new',c:'apartment',b:4,p:16000000,v:'yes',l:'noida sector 150'}
+];
+
+const grid = document.currentScript.parentElement;
+propertiesData.forEach((x,i)=>{
+grid.insertAdjacentHTML('beforeend',`
+<div class="card property"
+data-type="${x.t}"
+data-category="${x.c}"
+data-bhk="${x.b}"
+data-price="${x.p}"
+data-verified="${x.v}"
+data-location="${x.l}">
+<img src="https://picsum.photos/seed/${i+1}/800/500">
+<div class="card-body">
+<span class="badge ${x.t}">${x.t.toUpperCase()}</span>
+<h4>${x.b>0?x.b+' BHK':''} ${x.c.replace('-',' ')} ${x.v==='yes'?'✔️':''}</h4>
+<p>${x.l}</p>
+<div class="price">₹${(x.p/100000).toFixed(1)} L</div>
+${x.t==='buy'?'<div class="brokerage">0% Brokerage</div>':''}
+<div class="score">📈 Growth ⭐⭐⭐⭐☆ | 🏠 Yield ⭐⭐⭐☆☆</div>
+
+  <label style="display:flex;align-items:center;gap:6px;font-size:13px;margin-top:6px;cursor:pointer">
+  <input type="checkbox" class="compareBox" value="${x.id}">
+  Compare
+</label>
+
+
+<div 
+  onclick="location.href='property-detail.html?id=${x.id}'"
+  style="
+    margin-top:10px;
+    color:#1b3d6f;
+    font-weight:600;
+    cursor:pointer;
+    display:inline-block;
+  ">
+  View Property Details →
+</div>
+
+</div>
+</div>
+`);
+});
+</script>
+
+</div>
+</div>
+</section>
+
+<footer>© 2025 Landmart Reality</footer>
+
+<script>
+let activeType='buy', activeCategory='all';
+
+function filterType(t,e){
+activeType=t;
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+e.classList.add('active');
+applyFilters();
+}
+
+function filterCategory(c,e){
+activeCategory=c;
+document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+e.classList.add('active');
+applyFilters();
+}
+
+function updateBudgetLabel(){
+let v=document.getElementById('budgetRange').value;
+document.getElementById('budgetLabel').innerText="Up to ₹"+(v/10000000).toFixed(1)+" Cr";
+}
+
+function applyFilters(){
+let loc=document.getElementById('locationFilter').value.toLowerCase();
+let bhk=document.getElementById('bhkFilter').value;
+let maxBudget=parseInt(document.getElementById('budgetRange').value);
+let verified=document.getElementById('verifiedFilter').checked;
+let count=0;
+
+document.querySelectorAll('.property').forEach(p=>{  
+let ok =
+p.dataset.type===activeType &&
+(activeCategory==='all'||p.dataset.category===activeCategory) &&
+p.dataset.location.includes(loc) &&
+(!bhk || (bhk==="4"?parseInt(p.dataset.bhk)>=4:p.dataset.bhk===bhk)) &&
+parseInt(p.dataset.price)<=maxBudget &&
+(!verified || p.dataset.verified==="yes");
+
+p.style.display=ok?"block":"none";
+if(ok)count++;
+});
+document.getElementById('resultCount').innerText=`Showing ${count} properties`;
+}
+
+updateBudgetLabel();
+applyFilters();
+</script>
+
+<script>
+let compareIds = [];
+
+document.addEventListener("change", function(e){
+  if(!e.target.classList.contains("compareBox")) return;
+
+  const id = e.target.value;
+
+  if(e.target.checked){
+    if(compareIds.length >= 4){
+      alert("You can compare maximum 4 properties");
+      e.target.checked = false;
+      return;
+    }
+    compareIds.push(id);
+  }else{
+    compareIds = compareIds.filter(x => x !== id);
+  }
+
+  updateCompareBar();
+});
+
+function updateCompareBar(){
+  const bar = document.getElementById("compareBar");
+  document.getElementById("compareCount").innerText =
+    compareIds.length + " Selected";
+
+  bar.style.display = compareIds.length >= 2 ? "flex" : "none";
+}
+
+function goToCompare(){
+  location.href = "compare.html?ids=" + compareIds.join(",");
+}
+</script>
+
+<!-- COMPARE BAR (STEP 2) -->
+<div id="compareBar"
+     style="
+       display:none;
+       position:fixed;
+       bottom:0;
+       left:0;
+       width:100%;
+       background:#1b3d6f;
+       color:#fff;
+       padding:12px 20px;
+       display:flex;
+       justify-content:space-between;
+       align-items:center;
+       z-index:9999;
+     ">
+
+  <div>
+    <strong id="compareCount">0 Selected</strong>
+    <span style="font-size:13px;opacity:.85">
+      (Select 2–4 properties to compare)
+    </span>
+  </div>
+
+  <button onclick="goToCompare()"
+          style="
+            background:#38a169;
+            color:#fff;
+            border:none;
+            padding:10px 22px;
+            border-radius:8px;
+            font-weight:600;
+            cursor:pointer;
+          ">
+    Compare Now →
+  </button>
+</div>
+
+<script>
+/* AUTO ACTIVATE TAB FROM URL */
+const urlParams = new URLSearchParams(window.location.search);
+const typeParam = urlParams.get("type");
+
+if(typeParam){
+  const tabMap = {
+    buy: 0,
+    rent: 1,
+    new: 2
+  };
+
+  const tabs = document.querySelectorAll(".tab");
+  if(tabMap[typeParam] !== undefined){
+    tabs[tabMap[typeParam]].click();
+  }
+}
+
+/* AUTO APPLY LOCATION & CATEGORY */
+const locationParam = urlParams.get("location");
+const categoryParam = urlParams.get("category");
+
+if(locationParam){
+  document.getElementById("locationFilter").value = locationParam.toLowerCase();
+}
+if(categoryParam){
+  filterCategory(categoryParam, document.querySelector(`[onclick*="${categoryParam}"]`));
+}
+
+applyFilters();
+</script>
+
+
+
+
+</body>
+</html>  

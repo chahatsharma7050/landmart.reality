@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Properties | Trading Shastra Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--blue:#1b3d6f;
+--gold:#cfa84a;
+--green:#38a169;
+--bg:#f5f7fa;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#222}
+
+/* HEADER */
+header{
+background:var(--blue);
+color:#fff;
+padding:16px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:99;
+}
+header h1 span{color:var(--gold)}
+nav a{
+color:#fff;
+margin-left:20px;
+text-decoration:none;
+font-weight:500;
+}
+
+/* HERO */
+.hero{
+background:linear-gradient(rgba(27,61,111,.85),rgba(27,61,111,.65)),
+url("https://picsum.photos/seed/commercial/1600/900");
+background-size:cover;
+background-position:center;
+height:70vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+}
+.hero h2{font-size:42px;font-weight:800}
+.hero p{font-size:18px;margin-top:15px}
+
+/* SEARCH */
+.search-box{
+background:#fff;
+padding:25px;
+border-radius:18px;
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.search-box input,.search-box select{
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+min-width:220px;
+}
+.search-box button{
+background:var(--green);
+color:#fff;
+border:none;
+padding:12px 30px;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* SECTION */
+.section{padding:80px 60px}
+.section h3{
+text-align:center;
+font-size:32px;
+color:var(--blue);
+margin-bottom:50px;
+}
+.section h3::after{
+content:"";
+width:60px;
+height:4px;
+background:var(--gold);
+display:block;
+margin:10px auto;
+}
+
+/* COMMERCIAL TYPES */
+.types{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+}
+.type-box{
+background:#fff;
+padding:40px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+.type-box i{
+font-size:40px;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+/* LISTINGS */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+.card{
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+.card-body{
+padding:20px;
+}
+.price{
+font-size:22px;
+font-weight:800;
+color:var(--blue);
+}
+
+/* WHY */
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+.feature{
+background:#fff;
+padding:30px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 12px 25px rgba(0,0,0,.12);
+}
+
+/* CTA */
+.cta{
+background:linear-gradient(135deg,var(--blue),#16325a);
+color:#fff;
+padding:70px 20px;
+text-align:center;
+}
+.cta button{
+background:var(--green);
+border:none;
+padding:14px 30px;
+border-radius:30px;
+font-weight:700;
+color:#fff;
+margin-top:20px;
+cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+background:#111;
+color:#fff;
+padding:40px;
+text-align:center;
+}
+
+/* STEP 2 MODAL */
+.purpose-modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+z-index:999;
+align-items:center;
+justify-content:center;
+}
+.purpose-box{
+background:#fff;
+padding:30px;
+border-radius:18px;
+width:90%;
+max-width:420px;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.purpose-box h3{
+color:var(--blue);
+margin-bottom:20px;
+text-align:center;
+}
+.purpose-box label{
+display:block;
+margin-bottom:12px;
+font-size:15px;
+cursor:pointer;
+}
+.purpose-box button{
+width:100%;
+margin-top:12px;
+padding:12px;
+border:none;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+}
+.purpose-box button:first-of-type{
+background:var(--green);
+color:#fff;
+}
+.close-btn{background:#eee}
+
+@media(max-width:768px){
+.section{padding:50px 20px}
+.hero h2{font-size:30px}
+header{padding:15px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Landmart <span>Reality</span></h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="buy.html">Buy</a>
+<a href="rent.html">Rent</a>
+<a href="commercial.html">Commercial</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h2>Commercial Properties for Business Growth</h2>
+<p>Offices • Shops • Showrooms • Warehouses</p>
+
+<div class="search-box">
+<input placeholder="City / Location">
+<select>
+<option>Office Space</option>
+<option>Shop / Retail</option>
+<option>Showroom</option>
+<option>Warehouse</option>
+</select>
+<select>
+<option>Buy</option>
+<option>Lease</option>
+</select>
+<button onclick="openPurposeModal()">Search</button>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h3>Commercial Property Types</h3>
+<div class="types">
+<div class="type-box"><i class="fa-solid fa-building"></i><h4>Office Space</h4></div>
+<div class="type-box"><i class="fa-solid fa-store"></i><h4>Retail Shop</h4></div>
+<div class="type-box"><i class="fa-solid fa-shop"></i><h4>Showroom</h4></div>
+<div class="type-box"><i class="fa-solid fa-warehouse"></i><h4>Warehouse</h4></div>
+</div>
+</section>
+
+<section class="section">
+<h3>Featured Commercial Listings</h3>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/seed/c1/800/500"><div class="card-body"><h4>IT Office Space</h4><p>Noida Sector 62</p><div class="price">₹1.8 Cr</div></div></div>
+<div class="card"><img src="https://picsum.photos/seed/c2/800/500"><div class="card-body"><h4>Retail Shop</h4><p>Dwarka, Delhi</p><div class="price">₹95 L</div></div></div>
+<div class="card"><img src="https://picsum.photos/seed/c3/800/500"><div class="card-body"><h4>Warehouse</h4><p>Greater Noida</p><div class="price">₹2.6 Cr</div></div></div>
+</div>
+</section>
+
+<section class="section">
+<h3>Why Choose Our Commercial Services</h3>
+<div class="features">
+<div class="feature">✔ Verified Commercial Assets</div>
+<div class="feature">✔ Lease & Sale Support</div>
+<div class="feature">✔ ROI-Focused Locations</div>
+<div class="feature">✔ Corporate Assistance</div>
+</div>
+</section>
+
+<section class="cta">
+<h2>Looking for the Right Commercial Space?</h2>
+<p>Get expert assistance for buying or leasing commercial properties.</p>
+<button onclick="window.open('https://wa.me/8130589198','_blank')">Talk to Commercial Expert</button>
+</section>
+
+<footer>© 2025 Trading Shastra Property. All Rights Reserved.</footer>
+
+<!-- STEP 2 POPUP -->
+<div id="purposeModal" class="purpose-modal">
+<div class="purpose-box">
+<h3>This property is for?</h3>
+
+<label><input type="radio" name="purpose"> Self Use / Own Business</label>
+<label><input type="radio" name="purpose"> Investment + Lease</label>
+<label><input type="radio" name="purpose"> Only Rental Income</label>
+
+<button onclick="closePurposeModal()">Continue</button>
+<button class="close-btn" onclick="closePurposeModal()">Cancel</button>
+</div>
+</div>
+
+<script>
+function openPurposeModal(){
+document.getElementById("purposeModal").style.display="flex";
+}
+function closePurposeModal(){
+document.getElementById("purposeModal").style.display="none";
+}
+</script>
+
+</body>
+</html>
